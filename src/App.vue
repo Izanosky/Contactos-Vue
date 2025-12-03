@@ -23,6 +23,7 @@ const items = [
 </script>
 
 <template>
+  <Toast />
   <div class="p-4 md:p-5">
     <div class="layout">
       <Menubar :model="items" class="mb-4" />
