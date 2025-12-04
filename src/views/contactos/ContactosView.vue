@@ -1,7 +1,8 @@
 <template>
-    <div class="card">
-        <Toast />
-        <DataTable :value="contactosFiltrados" tableStyle="min-width: 50rem">
+    <Card>
+        <template #content>
+            <Toast />
+            <DataTable :value="contactosFiltrados" stripedRows tableStyle="min-width: 50rem">
             <template #header>
                 <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
                     <span class="text-xl font-bold">Contactos</span>
@@ -10,8 +11,8 @@
                             <InputIcon class="pi pi-search" />
                             <InputText v-model="valor" placeholder="Buscar por nombre o email" style="width: 300px;" />
                         </IconField>
-                        <Button @click="añadir()" severity="info" icon="pi pi-plus"
-                                rounded aria-label="Add" v-tooltip.top="'Nuevo'"></Button>
+                        <Button @click="añadir()" severity="info" icon="pi pi-plus" rounded aria-label="Add"
+                            v-tooltip.top="'Nuevo'"></Button>
                     </div>
                 </div>
             </template>
@@ -23,7 +24,7 @@
             </Column>
             <Column field="estado" sortable header="Estado" alignHeader="center" bodyClass="text-center">
                 <template #body="slotProps">
-                    <Tag :value="slotProps.data.estado" :severity="getSeverity(slotProps.data.estado)" />
+                    <Tag :value="slotProps.data.estado" :severity="getSeverity(slotProps.data.estado)" rounded />
                 </template>
             </Column>
             <Column field="favorito" sortable header="Favorito" alignHeader="center" bodyClass="text-center">
@@ -36,12 +37,14 @@
             <Column field="acciones" header="Acciones" alignHeader="center" bodyClass="text-center">
                 <template #body="slotProps">
                     <div class="flex gap-2 justify-center">
-                        <Button @click="detalles(slotProps.data.ID)" severity="info" icon="pi pi-search" rounded
-                            aria-label="Search" v-tooltip.top="'Detalles'"></Button>
-                        <Button @click="editar(slotProps.data.ID)" severity="success" icon="pi pi-pencil" rounded
-                            aria-label="Edit" v-tooltip.top="'Editar'"></Button>
-                        <Button @click="borrar(slotProps.data.ID)" severity="danger" icon="pi pi-times"
-                            rounded aria-label="Cancel" v-tooltip.top="'Borrar'"></Button>
+                        <ButtonGroup>
+                            <Button @click="detalles(slotProps.data.ID)" severity="info" icon="pi pi-search" rounded
+                                raised v-tooltip.top="'Detalles'" />
+                            <Button @click="editar(slotProps.data.ID)" severity="success" icon="pi pi-pencil" rounded
+                                raised v-tooltip.top="'Editar'" />
+                            <Button @click="borrar(slotProps.data.ID)" severity="danger" icon="pi pi-times" rounded
+                                raised v-tooltip.top="'Borrar'" />
+                        </ButtonGroup>
                     </div>
                 </template>
             </Column>
@@ -49,10 +52,12 @@
                 En total hay {{ contactosFiltrados ? contactosFiltrados.length : 0 }} contactos.
             </template>
         </DataTable>
+        </template>
+    </Card>
 
-        <!-- Esto es el popup que sale cuando borramos un contacto -->
-        
-        <ConfirmDialog group="headless">
+    <!-- Esto es el popup que sale cuando borramos un contacto -->
+
+    <ConfirmDialog group="headless">
             <template #container="{ message, acceptCallback, rejectCallback }">
                 <div class="surface-overlay p-6 border-round" style="text-align: center; max-width: 400px;">
                     <div class="mb-4">
@@ -67,7 +72,6 @@
                 </div>
             </template>
         </ConfirmDialog>
-    </div>
 </template>
 
 <script setup>
@@ -80,6 +84,7 @@ import { useToast } from 'primevue/usetoast';
 import InputText from 'primevue/inputtext';
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
+import Card from 'primevue/card';
 
 const toast = useToast();
 const confirm = useConfirm();
@@ -91,9 +96,9 @@ const contactosFiltrados = computed(() => {
     if (!valor.value) {
         return contactos.value;
     }
-    
+
     const filtro = valor.value.toLowerCase();
-    return contactos.value.filter(contacto => 
+    return contactos.value.filter(contacto =>
         contacto.nombre.toLowerCase().includes(filtro) ||
         contacto.email.toLowerCase().includes(filtro)
     );
@@ -135,9 +140,9 @@ function borrar(ID) {
             console.log("Borrando el contacto con ID:", ID);
             contactosStore.eliminarContacto(ID);
             toast.add({
-                severity:'error', 
-                summary: 'Eliminado', 
-                detail: `Contacto con ID "${ID}" eliminado correctamente`, 
+                severity: 'error',
+                summary: 'Eliminado',
+                detail: `Contacto con ID "${ID}" eliminado correctamente`,
                 life: 3000
             });
         }

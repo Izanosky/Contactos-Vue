@@ -43,7 +43,7 @@ export const useContactosStore = defineStore('contactos', {
   getters: {
     totalContactos: (state) => state.pedidos.length,
     totalFavoritos: (state) => state.contactos.filter(c => c.favorito).length,
-    contactosActivos: (state) => state.contactos.filter(c => c.estado === 'Activo'),
+    contactosActivos: (state) => state.contactos.filter(c => c.estado === 'Activo').length,
 
   },
   actions: {

@@ -5,7 +5,7 @@
 
     <Form
       v-slot="$form"
-      :estadoInicial="estadoInicial"
+      :initialValues="estadoInicial"
       :resolver="resolver"
       @submit="onFormSubmit"
       class="flex flex-column gap-4 w-full sm:w-56"
@@ -129,15 +129,14 @@ const estadoInicial = ref({
   favorito: false
 })
 
-// Validación con Zod
 const resolver = ref(
   zodResolver(
     z.object({
-      nombre: z.string().min(1, { message: 'Nombre es requerido' }),
+      nombre: z.string().min(1, { message: 'El nombre es obligatorio' }),
       email: z.string().email({ message: 'Email inválido' }),
-      telefono: z.string().min(1, { message: 'Teléfono es requerido' }),
-      empresa: z.string().min(1, { message: 'Empresa es requerida' }),
-      estado: z.enum(['Activo', 'Inactivo'], { message: 'Estado debe ser Activo o Inactivo' }),
+      telefono: z.string().min(1, { message: 'El teléfono es obligatorio' }),
+      empresa: z.string().min(1, { message: 'La empresa es obligatoria' }),
+      estado: z.enum(['Activo', 'Inactivo']),
       favorito: z.boolean()
     })
   )
@@ -164,7 +163,7 @@ const onFormSubmit = ({ valid, values }) => {
     
     // Redirigir a la lista de contactos usando replace para forzar recarga
     setTimeout(() => {
-      router.replace({ name: 'contactos' })
+      router.push({ name: 'contactos' })
     }, 100)
   }
 }

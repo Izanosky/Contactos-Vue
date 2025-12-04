@@ -5,7 +5,7 @@
     <Form
       v-if="contacto"
       v-slot="$form"
-      :initialValues="initialValues"
+      :initialValues="estadoInicial"
       :resolver="resolver"
       @submit="onFormSubmit"
       class="flex flex-column gap-4 w-full sm:w-56"
@@ -121,8 +121,7 @@ const contacto = computed(() => {
     return contactos.value.find(c => c.ID === contactoID.value)
 })
 
-// Estado inicial con los datos del contacto
-const initialValues = ref({
+const estadoInicial = ref({
   nombre: '',
   email: '',
   telefono: '',
@@ -130,37 +129,32 @@ const initialValues = ref({
   estado: 'Activo'
 })
 
-// Cargar datos cuando el contacto esté disponible
 watch(contacto, (newContacto) => {
   if (newContacto) {
-    initialValues.value = {
+    estadoInicial.value = {
       nombre: newContacto.nombre,
       email: newContacto.email,
       telefono: newContacto.telefono,
       empresa: newContacto.empresa,
       estado: newContacto.estado
     }
-  } else {
-    router.replace({ name: 'not-found' })
   }
 }, { immediate: true })
 
-// Validación con Zod
 const resolver = ref(
   zodResolver(
     z.object({
-      nombre: z.string().min(1, { message: 'Nombre es requerido' }),
-      email: z.string().email({ message: 'Email inválido' }),
-      telefono: z.string().min(1, { message: 'Teléfono es requerido' }),
-      empresa: z.string().min(1, { message: 'Empresa es requerida' }),
-      estado: z.enum(['Activo', 'Inactivo'], { message: 'Estado debe ser Activo o Inactivo' })
+      nombre: z.string().trim().min(1, { message: 'El nombre es obligatorio' }),
+      email: z.string().trim().email({ message: 'Email inválido' }),
+      telefono: z.string().trim().min(1, { message: 'El teléfono es obligatorio' }),
+      empresa: z.string().trim().min(1, { message: 'La empresa es obligatoria' }),
+      estado: z.enum(['Activo', 'Inactivo'])
     })
   )
 )
 
 const onFormSubmit = ({ valid, values }) => {
   if (valid && contacto.value) {
-    // Usar la acción del store para actualizar el contacto
     const contactoActualizado = {
       ID: contactoID.value,
       nombre: values.nombre,
@@ -180,7 +174,7 @@ const onFormSubmit = ({ valid, values }) => {
     })
     
     setTimeout(() => {
-      router.replace({ name: 'contactos' })
+      router.push({ name: 'contactos' })
     }, 100)
   }
 }

@@ -10,15 +10,16 @@ const items = [
     command: () => router.push('/'),
   },
   {
-    label: 'Acerca',
-    icon: 'pi pi-info-circle',
-    command: () => router.push('/about'),
-  },
-  {
     label: 'Contactos',
     icon: 'pi pi-users',
     command: () => router.push('/contactos'),
   },
+  {
+    label: 'Acerca',
+    icon: 'pi pi-info-circle',
+    command: () => router.push('/about'),
+  },
+  
 ]
 </script>
 
