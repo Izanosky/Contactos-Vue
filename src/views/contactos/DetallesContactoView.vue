@@ -81,7 +81,16 @@ const contacto = computed(() => {
 });
 
 const getSeverity = (estado) => {
-    return estado === 'Activo' ? 'success' : 'danger';
+    switch (estado.toLowerCase()) {
+        case 'activo':
+            return 'success';
+
+        case 'inactivo':
+            return 'danger';
+
+        default:
+            return 'info';
+    }
 };
 
 const editar = () => {
