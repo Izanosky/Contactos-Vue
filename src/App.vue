@@ -19,23 +19,35 @@ const items = [
     icon: 'pi pi-info-circle',
     command: () => router.push('/about'),
   },
-  
+
 ]
 </script>
 
 <template>
+  <header >
+    <Menubar :model="items"/>
+  </header>
   <Toast />
-  <div class="p-4 md:p-5">
-    <div class="layout">
-      <Menubar :model="items" class="mb-4" />
-      <RouterView />
-    </div>
+  <div class="app-container">
+    <RouterView />
   </div>
 </template>
 
-<style scoped>
+<style>
+.app-container {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .layout {
   max-width: 1100px;
   margin: 0 auto;
+}
+
+.p-menubar {
+  border-radius: 0;
+  display: flex;
+  justify-content: center;
 }
 </style>

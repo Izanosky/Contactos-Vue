@@ -1,7 +1,7 @@
 <template>
+    <Toast />
     <Card>
         <template #content>
-            <Toast />
             <DataTable :value="contactosFiltrados" stripedRows tableStyle="min-width: 50rem">
             <template #header>
                 <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">

@@ -144,7 +144,11 @@ watch(contacto, (newContacto) => {
 const resolver = ref(
   zodResolver(
     z.object({
-      nombre: z.string().trim().min(1, { message: 'El nombre es obligatorio' }),
+      nombre: z
+          .string()
+          .trim()
+          .min(1, { message: 'El nombre es obligatorio' })
+          .max(20, { message: 'El nombre no puede exceder 20 caracteres' }),
       email: z.string().trim().email({ message: 'Email inválido' }),
       telefono: z.string().trim().min(1, { message: 'El teléfono es obligatorio' }),
       empresa: z.string().trim().min(1, { message: 'La empresa es obligatoria' }),
