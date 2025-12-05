@@ -2,7 +2,9 @@
     <Toast />
     <Card>
         <template #content>
-            <DataTable :value="contactosFiltrados" stripedRows tableStyle="min-width: 50rem">
+            <DataTable :value="contactosFiltrados" paginator :rows="5" 
+                :rowsPerPageOptions="[5, 10, 20, 50]" 
+                stripedRows tableStyle="min-width: 50rem">
             <template #header>
                 <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem;">
                     <span class="text-xl font-bold">Contactos</span>
@@ -133,7 +135,7 @@ function editar(ID) {
 
 function borrar(ID) {
     confirm.require({
-        message: '¿Estás seguro de que quieres eliminar este contacto?',
+        message: '¿Estas seguro de que quieres eliminar este contacto?',
         header: 'Confirmar eliminación',
         group: 'headless',
         accept: () => {

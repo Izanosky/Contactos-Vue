@@ -44,10 +44,4 @@ const items = [
   max-width: 1100px;
   margin: 0 auto;
 }
-
-.p-menubar {
-  border-radius: 0;
-  display: flex;
-  justify-content: center;
-}
 </style>
