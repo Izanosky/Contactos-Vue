@@ -28,8 +28,8 @@ app.use(PrimeVue, {
 app.use(router)
 app.use(createPinia())
 app.use(ToastService)
-app.directive('tooltip', Tooltip);
-app.use(ConfirmationService);
+app.directive('tooltip', Tooltip)
+app.use(ConfirmationService)
 app.component('ConfirmDialog', ConfirmDialog)
 app.component('Toast', Toast)
 

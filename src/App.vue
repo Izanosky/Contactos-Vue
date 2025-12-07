@@ -24,8 +24,8 @@ const items = [
 </script>
 
 <template>
-  <header >
-    <Menubar :model="items"/>
+  <header>
+    <Menubar :model="items" />
   </header>
   <Toast />
   <div class="app-container">

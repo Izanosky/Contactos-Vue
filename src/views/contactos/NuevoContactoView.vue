@@ -3,24 +3,14 @@
     <Toast />
     <h1>Nuevo Contacto</h1>
 
-    <Form
-      v-slot="$form"
-      :initialValues="estadoInicial"
-      :resolver="resolver"
-      @submit="onFormSubmit"
-      class="flex flex-column gap-4 w-full sm:w-56"
-    >
+    <Form v-slot="$form" :initialValues="estadoInicial" :resolver="resolver" @submit="onFormSubmit"
+      class="flex flex-column gap-4 w-full sm:w-56">
       <div class="flex flex-column gap-1">
         <IftaLabel>
           <InputText name="nombre" type="text" fluid variant="filled" />
           <label>Nombre</label>
         </IftaLabel>
-        <Message
-          v-if="$form.nombre?.invalid"
-          severity="error"
-          size="small"
-          variant="simple"
-        >
+        <Message v-if="$form.nombre?.invalid" severity="error" size="small" variant="simple">
           {{ $form.nombre.error.message }}
         </Message>
       </div>
@@ -30,12 +20,7 @@
           <InputText name="email" type="email" fluid variant="filled" />
           <label>Email</label>
         </IftaLabel>
-        <Message
-          v-if="$form.email?.invalid"
-          severity="error"
-          size="small"
-          variant="simple"
-        >
+        <Message v-if="$form.email?.invalid" severity="error" size="small" variant="simple">
           {{ $form.email.error.message }}
         </Message>
       </div>
@@ -45,12 +30,7 @@
           <InputText name="telefono" type="text" fluid variant="filled" />
           <label>Teléfono</label>
         </IftaLabel>
-        <Message
-          v-if="$form.telefono?.invalid"
-          severity="error"
-          size="small"
-          variant="simple"
-        >
+        <Message v-if="$form.telefono?.invalid" severity="error" size="small" variant="simple">
           {{ $form.telefono.error.message }}
         </Message>
       </div>
@@ -60,12 +40,7 @@
           <InputText name="empresa" type="text" fluid variant="filled" />
           <label>Empresa</label>
         </IftaLabel>
-        <Message
-          v-if="$form.empresa?.invalid"
-          severity="error"
-          size="small"
-          variant="simple"
-        >
+        <Message v-if="$form.empresa?.invalid" severity="error" size="small" variant="simple">
           {{ $form.empresa.error.message }}
         </Message>
       </div>
@@ -75,12 +50,7 @@
           <Select name="estado" :options="['Activo', 'Inactivo']" fluid variant="filled" />
           <label>Estado</label>
         </IftaLabel>
-        <Message
-          v-if="$form.estado?.invalid"
-          severity="error"
-          size="small"
-          variant="simple"
-        >
+        <Message v-if="$form.estado?.invalid" severity="error" size="small" variant="simple">
           {{ $form.estado.error.message }}
         </Message>
       </div>
@@ -94,7 +64,8 @@
 
       <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
         <Button type="submit" severity="success" label="Crear" size="small" style="flex: 1;" />
-        <Button type="button" severity="secondary" label="Cancelar" size="small" style="flex: 1;" @click="router.push({ name: 'contactos' })" />
+        <Button type="button" severity="secondary" label="Cancelar" size="small" style="flex: 1;"
+          @click="router.push({ name: 'contactos' })" />
       </div>
     </Form>
   </div>
@@ -133,11 +104,12 @@ const resolver = ref(
   zodResolver(
     z.object({
       nombre: z
-          .string()
-          .trim()
-          .min(1, { message: 'El nombre es obligatorio' })
-          .max(20, { message: 'El nombre no puede exceder 20 caracteres' }),
-      email: z.string().email({ message: 'Email inválido' }),
+        .string()
+        .trim()
+        .min(1, { message: 'El nombre es obligatorio' })
+        .max(40, { message: 'El nombre no puede exceder 20 caracteres' }),
+
+      email: z.string().email({ message: 'ail inválido' }),
       telefono: z.string().min(1, { message: 'El teléfono es obligatorio' }),
       empresa: z.string().min(1, { message: 'La empresa es obligatoria' }),
       estado: z.enum(['Activo', 'Inactivo']),
@@ -161,14 +133,11 @@ const onFormSubmit = ({ valid, values }) => {
     toast.add({
       severity: 'success',
       summary: 'Contacto creado',
-      detail: `${values.nombre} ha sido agregado exitosamente`,
+      detail: `${values.nombre} hao agregado exitosamente`,
       life: 3000
     })
     
-    // Redirigir a la lista de contactos usando replace para forzar recarga
-    setTimeout(() => {
-      router.push({ name: 'contactos' })
-    }, 100)
+    router.push({ name: 'contactos' })
   }
 }
 </script>

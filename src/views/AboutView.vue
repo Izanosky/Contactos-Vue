@@ -78,10 +78,10 @@
 </template>
 
 <script setup>
-import Card from 'primevue/card';
-import Avatar from 'primevue/avatar';
-import Panel from 'primevue/panel';
-import Chip from 'primevue/chip';
-import Badge from 'primevue/badge';
-import Tag from 'primevue/tag';
+import Card from 'primevue/card'
+import Avatar from 'primevue/avatar'
+import Panel from 'primevue/panel'
+import Chip from 'primevue/chip'
+import Badge from 'primevue/badge'
+import Tag from 'primevue/tag'
 </script>

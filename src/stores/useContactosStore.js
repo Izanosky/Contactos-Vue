@@ -41,36 +41,35 @@ export const useContactosStore = defineStore('contactos', {
     seleccionado: null,
   }),
   getters: {
-    totalContactos: (state) => state.pedidos.length,
+    totalContactos: (state) => state.contactos.length,
     totalFavoritos: (state) => state.contactos.filter(c => c.favorito).length,
     contactosActivos: (state) => state.contactos.filter(c => c.estado === 'Activo').length,
 
   },
   actions: {
     crearContacto(contacto) {
-      this.contactos.push(contacto);
+      this.contactos.push(contacto)
     },
     actualizarContacto(id, contactoActualizado) {
-      const index = this.contactos.findIndex(c => c.ID === id);
+      const index = this.contactos.findIndex(c => c.ID === id)
       if (index !== -1) {
-        this.contactos[index] = { ...this.contactos[index], ...contactoActualizado };
+        this.contactos.splice(index, 1, contactoActualizado)
       }
     },
     eliminarContacto(id) {
-      this.contactos = this.contactos.filter(c => c.ID !== id);
-    },
-    toggleFavorito(id) {
-      const contacto = this.contactos.find(c => c.ID === id);
-      if (contacto) {
-        contacto.favorito = !contacto.favorito;
+      const index = this.contactos.findIndex(c => c.ID === id)
+      if (index !== -1) {
+        this.contactos.splice(index, 1)
       }
     },
-    getID () {
-      return this.contactos.length + 1;
+    toggleFavorito(id) {
+      const contacto = this.contactos.find(c => c.ID === id)
+      if (contacto) {
+        contacto.favorito = !contacto.favorito
+      }
+    },
+    getID() {
+      return this.contactos.length + 1
     }
   }
 })
-
-function generarIdSeguro() {
-  return parseInt(crypto.getRandomValues(new Uint32Array(1))[0].toString(36));
-}

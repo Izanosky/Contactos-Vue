@@ -6,10 +6,13 @@
         <div class="flex flex-column align-items-center text-center py-5">
           <Avatar icon="pi pi-users" size="xlarge" class="mb-3" />
           <h1 class="text-4xl font-bold m-0 mb-2">Gestión de Contactos</h1>
-          <p class="text-xl text-600 mb-4">Sistema completo de administración de contactos con Vue 3, PrimeVue y Pinia</p>
+          <p class="text-xl text-600 mb-4">Sistema completo de administración de contactos con Vue 3, PrimeVue y Pinia
+          </p>
           <div class="flex gap-2">
-            <Button label="Ver Contactos" icon="pi pi-users" @click="$router.push({ name: 'contactos' })" size="large" />
-            <Button label="Nuevo Contacto" icon="pi pi-plus" severity="success" outlined @click="$router.push({ name: 'contacto-nuevo' })" size="large" />
+            <Button label="Ver Contactos" icon="pi pi-users" @click="$router.push({ name: 'contactos' })"
+              size="large" />
+            <Button label="Nuevo Contacto" icon="pi pi-plus" severity="success" outlined
+              @click="$router.push({ name: 'contacto-nuevo' })" size="large" />
           </div>
         </div>
       </template>
@@ -21,7 +24,8 @@
         <Card>
           <template #content>
             <div class="flex flex-column align-items-center text-center p-3">
-              <Avatar icon="pi pi-search" class="mb-3" size="xlarge" style="background-color: var(--blue-100); color: var(--blue-600);" />
+              <Avatar icon="pi pi-search" class="mb-3" size="xlarge"
+                style="background-color: var(--blue-100); color: var(--blue-600);" />
               <h3 class="m-0 mb-2">Búsqueda Rápida</h3>
               <p class="text-600 m-0">Encuentra contactos por nombre o email al instante</p>
             </div>
@@ -33,7 +37,8 @@
         <Card>
           <template #content>
             <div class="flex flex-column align-items-center text-center p-3">
-              <Avatar icon="pi pi-star-fill" class="mb-3" size="xlarge" style="background-color: var(--yellow-100); color: var(--yellow-600);" />
+              <Avatar icon="pi pi-star-fill" class="mb-3" size="xlarge"
+                style="background-color: var(--yellow-100); color: var(--yellow-600);" />
               <h3 class="m-0 mb-2">Favoritos</h3>
               <p class="text-600 m-0">Marca contactos importantes como favoritos</p>
             </div>
@@ -45,7 +50,8 @@
         <Card>
           <template #content>
             <div class="flex flex-column align-items-center text-center p-3">
-              <Avatar icon="pi pi-shield" class="mb-3" size="xlarge" style="background-color: var(--purple-100); color: var(--purple-600);" />
+              <Avatar icon="pi pi-shield" class="mb-3" size="xlarge"
+                style="background-color: var(--purple-100); color: var(--purple-600);" />
               <h3 class="m-0 mb-2">Gestión Segura</h3>
               <p class="text-600 m-0">CRUD completo con validación de datos</p>
             </div>
@@ -108,16 +114,16 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { useContactosStore } from '@/stores/useContactosStore';
-import Card from 'primevue/card';
-import Button from 'primevue/button';
-import Avatar from 'primevue/avatar';
-import Badge from 'primevue/badge';
-import Panel from 'primevue/panel';
+import { computed } from 'vue'
+import { useContactosStore } from '@/stores/useContactosStore'
+import Card from 'primevue/card'
+import Button from 'primevue/button'
+import Avatar from 'primevue/avatar'
+import Badge from 'primevue/badge'
+import Panel from 'primevue/panel'
 
-const contactosStore = useContactosStore();
+const contactosStore = useContactosStore()
 
-const contactosActivos = computed(() => contactosStore.contactosActivos);
-const contactosFavoritos = computed(() => contactosStore.totalFavoritos);
+const contactosActivos = computed(() => contactosStore.contactosActivos)
+const contactosFavoritos = computed(() => contactosStore.totalFavoritos)
 </script>
