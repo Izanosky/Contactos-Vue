@@ -133,7 +133,7 @@ const onFormSubmit = ({ valid, values }) => {
     toast.add({
       severity: 'success',
       summary: 'Contacto creado',
-      detail: `${values.nombre} hao agregado exitosamente`,
+      detail: `${values.nombre} ha sido agregado exitosamente`,
       life: 3000
     })
     
