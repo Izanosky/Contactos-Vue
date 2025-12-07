@@ -49,7 +49,7 @@
                     </template>
                 </Column>
                 <template #footer>
-                    En total hay {{ contactosFiltrados ? contactosFiltrados.length : 0 }} contactos.
+                    En total hay {{ contactosStore.totalContactos }} contactos.
                 </template>
             </DataTable>
         </template>
