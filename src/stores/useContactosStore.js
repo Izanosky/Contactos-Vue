@@ -69,7 +69,8 @@ export const useContactosStore = defineStore('contactos', {
       }
     },
     getID() {
-      return this.contactos.length + 1
+
+      return this.contactos.length === 0 ? 1 : Math.max(...this.contactos.map(c => c.ID)) + 1
     }
   }
 })
