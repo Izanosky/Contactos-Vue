@@ -109,7 +109,7 @@ const resolver = ref(
         .min(1, { message: 'El nombre es obligatorio' })
         .max(40, { message: 'El nombre no puede exceder 20 caracteres' }),
 
-      email: z.string().email({ message: 'ail inválido' }),
+      email: z.string().email({ message: 'Email inválido' }),
       telefono: z.string().min(1, { message: 'El teléfono es obligatorio' }),
       empresa: z.string().min(1, { message: 'La empresa es obligatoria' }),
       estado: z.enum(['Activo', 'Inactivo']),
